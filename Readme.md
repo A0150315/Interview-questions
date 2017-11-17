@@ -8,31 +8,26 @@
 Promise的构造函数中代码是同步执行的，但是then方法是异步执行的，then方法需要等到等到resolve函数执行时才得到执行。
 ### 8. 运行以下程序
 ```
-const promise = new Promise((resovle reject)=>{
-        resole('success1');
-        reject('error');
-        resole('success2');
-    });
+const promise = new Promise((resovle, reject) => {
+    resovle('success1');
+    reject('error');
+    resovle('success2');
+});
 
-promise
-    .then(res=>{
-            console.log('then: ', res);
-        })
-    .catch(err=>{
-            console.log('catch: ', err);
-        });
+promise.then(res => {
+    console.log('then: ', res);
+}).catch(err => {
+    console.log('catch: ', err);
+});
 
-Promise.resovle(1)
-    .then(res=>{
-            console.logres);
-            return 2;
-        })
-    .catch(err=>{
-            return 3;
-        })
-    .catch(res=>{
-            console.log(res);
-        });
+promise.resovle(1).then(res => {
+    console.log(res);
+    return 2;
+}).catch(err => {
+    return 3;
+}).catch(res => {
+    console.log(res);
+});
 ```
 ###### 运行结果为：
 ```
