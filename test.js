@@ -1,44 +1,19 @@
-function searchTwitter(term, onload, onerror) {
+Array.prototype.quick_sort = function() {
+	var len = this.length;
+	if (len <= 1)
+		return this.slice(0);
+	var left = [];
+	var right = [];
+	var mid = [this[0]];
+	for (var i = 1; i < len; i++)
+		if (this[i] < mid[0])
+			left.push(this[i]);
+		else
+			right.push(this[i]);
+	return left.quick_sort().concat(mid.concat(right.quick_sort()));
+};
 
-     var xhr, results, url;
-     url = 'http://search.twitter.com/search.json?rpp=100&q=' + term;
-     xhr = new XMLHttpRequest();
-     xhr.open('GET', url, true);
-
-     xhr.onload = function (e) {
-         if (this.status === 200) {
-             results = JSON.parse(this.responseText);
-             onload(results);
-         }
-     };
-
-     xhr.onerror = function (e) {
-         onerror(e);
-     };
-
-     xhr.send();
- }
-
- function handleError(error) {
-     /* handle the error */
- }
-
- function concatResults() {
-     /* order tweets by date */
- }
-
- function loadTweets() {
-     var container = document.getElementById('container');
-
-     searchTwitter('#IE10', function (data1) {
-         searchTwitter('#IE9', function (data2) {
-             /* Reshuffle due to date */
-             var totalResults = concatResults(data1.results, data2.results);
-             totalResults.forEach(function (tweet) {
-                 var el = document.createElement('li');
-                 el.innerText = tweet.text;
-                 container.appendChild(el);
-             });
-         }, handleError);
-     }, handleError);
- }
+var arr = [5, 3, 7, 4, 1, 9, 8, 6, 2];
+console.log(arr);
+arr = arr.quick_sort();
+console.log(arr);

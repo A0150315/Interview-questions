@@ -20,14 +20,14 @@ promise.then(res => {
     console.log('catch: ', err);
 });
 
-promise.resovle(1).then(res => {
-    console.log(res);
-    return 2;
-}).catch(err => {
-    return 3;
-}).catch(res => {
-    console.log(res);
-});
+// promise.resovle(1).then(res => {
+//     console.log(res);
+//     return 2;
+// }).catch(err => {
+//     return 3;
+// }).catch(res => {
+//     console.log(res);
+// });
 ```
 ###### 运行结果为：
 ```
@@ -38,9 +38,106 @@ promise.resovle(1).then(res => {
 2. 把里面的数字用［］包着，abc［345］defacbca
 3. 全部数字乘2，得到abc6810defacbca
 ```
+代码：
+````
+const str = "abc345defacbca1231";
+const test1 = str.replace(/a|b|c/g, "");
+console.log(test1);
+//---------------------
+let test2 = str.split("");
+const numSymbelReg = /\d/;
+let flag = 1;
+let str2 = "";
+for (let i = 0; i < test2.length; i++) {
+    if (numSymbelReg.test(test2[i]) && flag) {
+        str2 += "["
+        flag = 0;
+    }
+    str2 += test2[i];
+    if (numSymbelReg.test(test2[i]) && !numSymbelReg.test(test2[i + 1])) {
+        str2 += "]";
+        flag = 1;
+    }
+}
+console.log(str2);
+//---------------------
+let test3 = str.split("");
+const numReg = /\d/;
+let str3 = "";
+for (let i = 0; i < test3.length; i++) {
+    if (numReg.test(test3[i])) {
+        str3 += Number(test3[i])*2;
+        continue;
+    }
+    str3 += test3[i];
+}
+console.log(str3);
+````
 ### 10. ES5写一下用getter和setter的案例
+```
+const str ={
+    str:"I'm test.",
+    get getFirst(){return (this.str.split("")[0])},
+    set setFirst(char){this.str =char+' '+this.str}
+}
+str.setFirst=1;
+console.log(str.str);
+```
 ### 11. 写一下闭包
+```
+<body>
+    <button type="button" name="button">1</button>
+    <button type="button" name="button">2</button>
+    <button type="button" name="button">3</button>
+    <button type="button" name="button">4</button>
+</body>
+<script type="text/javascript">
+    const btn = document.getElementsByTagName("button");
+    for (var i = 0; i < btn.length; i++) {
+        btn[i].onclick = (function(i) {
+            return () => {
+                console.log(i);
+            }
+        })(i)
+    }
+</script>
+```
 ### 12. 写一下排序（快速排序、选择排序、sort）
+sort:
+````
+let arr = [12546,67,234,89,234,23];
+console.log(arr.sort(s));//[ 23, 67, 89, 234, 234, 12546 ]
+
+function s(a,b){
+    return a-b;
+}//从小到大
+````
+快速排序：
+````
+Array.prototype.quick_sort = function() {
+	var len = this.length;
+	if (len <= 1)
+		return this.slice(0);
+	var left = [];
+	var right = [];
+	var mid = [this[0]];
+	for (var i = 1; i < len; i++)
+		if (this[i] < mid[0])
+			left.push(this[i]);
+		else
+			right.push(this[i]);
+	return left.quick_sort().concat(mid.concat(right.quick_sort()));
+};
+
+var arr = [5, 3, 7, 4, 1, 9, 8, 6, 2];
+console.log(arr);
+arr = arr.quick_sort();
+console.log(arr);
+
+````
+选择排序：
+````
+````
 ### 13. Vue组件通信
 ### 14. 如果后台报错，你应该怎么处理
 ### 15. Vue的生命周期
@@ -86,3 +183,5 @@ promise.resovle(1).then(res => {
 ### 55. .call .apply 的作用和区别。
 ### 56. jQuery的属性拷贝（extend）的实现原理是什么，如何实现深拷贝
 ### 57. 需求：实现一个页面操作不会整页刷新的网站，并且能在浏览器前进、后退时正确给出你的技术实现方案？
+### 58. 如何实现下拉刷新
+### 59. Vue混合式通信
