@@ -323,6 +323,7 @@ console.log(arr);
     L-V-H-A :  a:link {} a:visited {} a:hover {} a:active {}
 ### 51. CSS的权重优先级如何计算？
 <img src="img\css_weight.jpg"/>
+
 ### 52. 如何居中div,如何居中一个浮动元素？如何让绝对定位的DIV居中？
     1. 给div设置一个宽度，然后添加margin:0 auto属性
 
