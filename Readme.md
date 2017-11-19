@@ -1,6 +1,7 @@
 ### 1. 项目经理、技术经理都干嘛
 ### 2. 需求文档怎么写
 ### 3. 开发文档怎么写
+    开发文档包括：《功能要求》、《投标方案》、《需求分析》、《技术分析》、《系统分析》、《数据库文档》、《功能函数文档》、《界面文档》、《编译手册》、《 QA 文档》、《项目总结》等。
 ### 4. 公司多少人
 ### 5. 主产品是什么
 ### 6. 如果客户说要做一个东西，需求也不明确怎么做
@@ -165,9 +166,29 @@ arr.selection_sort();
 console.log(arr);
 ````
 ### 13. Vue组件通信
+    1. props双向绑定
+    2. 自定义事件
+    3. Vuex
+[vue跨组件通信的几种方法](https://github.com/zhouwenbin/blog/issues/20)
 ### 14. 如果后台报错，你应该怎么处理
 ### 15. Vue的生命周期
+    1. beforeCreate
+    2. created
+    3. beforeMount
+    4. mounted
+    5. beforeUpdate
+    6. updated
+    7. activated
+    8. deactivated
+    9. beforeDestroy
+    10. destroyed
+    11. errorCaptured(2.5.0 + 新增)
 ### 16. computed 和 watch 的区别
+    计算属性是计算属性，观察是观察。
+
+    另外，计算属性具有缓存。计算属性是基于它们的依赖进行缓存的。计算属性只有在它的相关依赖发生改变时才会重新求值。这就意味着只要 lastName和firstName都没有发生改变，多次访问 fullName计算属性会立即返回之前的计算结果，而不必再次执行函数。
+
+    而观察watch是观察一个特定的值，当该值变化时执行特定的函数。例如分页组件中，我们可以检测页码执行获取数据的函数。
 ### 17. 如果我想要页面所有数据都加载完后，自动调用一个方法该怎么做
 ### 18. 前端如何预防后端给的东西报错
 ### 19. 拦截器
@@ -236,13 +257,29 @@ console.log(arr);
     鲜为人知的是：
     <area> <base> <col> <command> <embed> <keygen> <param> <source> <track> <wbr>
 ### 45. Doctype 作用？严格模式与混杂模式如何区分？他们有何意义？
+    1. <!DOCTYPE> 声明位于文档中的最前面，处于 <html> 标签之前。告知浏览器以何种模式来渲染文档。 
+    2. 严格模式的排版和 JS 运作模式是  以该浏览器支持的最高标准运行。
+    3. 在混杂模式中，页面以宽松的向后兼容的方式显示。模拟老式浏览器的行为以防止站点无法工作。
+    4. DOCTYPE不存在或格式不正确会导致文档以混杂模式呈现
 ### 46. 使用过模板语言吗？分别是哪些？
+###### [参考：模板引擎](https://baike.baidu.com/item/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E)
 ### 47. script,script async,script defer的区别
+    1. <script src="script.js"></script>
+    没有 defer 或 async，浏览器会立即加载并执行指定的脚本，“立即”指的是在渲染该 script 标签之下的文档元素之前，也就是说不等待后续载入的文档元素，读到就加载并执行。
+    2. <script async src="script.js"></script>
+    有 async，加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行（异步）。
+    3. <script defer src="myscript.js"></script>
+    有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。
+<img src="img\defer async.jpg">
 ### 48. 介绍一下CSS的盒子模型，低版本IE的盒子模型有什么不同
     1. 两种，IE 盒子模型、标准 W3C 盒子模型；IE 的content部分包含了 border 和 padding;
 
     2. 盒模型：内容(content)、填充(padding)、边界(margin)、 边框(border).
 ### 49. BFC的理解
+    首先BFC是一个名词，是一个独立的布局环境，我们可以理解为一个箱子（实际上是看不见摸不着的），箱子里面物品的摆放是不受外界的影响的。
+
+    转换为BFC的理解则是：
+    BFC中的元素的布局是不受外界的影响（我们往往利用这个特性来消除浮动元素对其非浮动的兄弟元素和其子元素带来的影响。）并且在一个BFC中，块盒与行盒（行盒由一行中所有的内联元素所组成）都会垂直的沿着其父元素的边框排列。
 ### 50. 经常遇到的浏览器兼容性有哪些？原因，解决方法是什么，常用Hack的技巧
     * IE浏览器的内核Trident、 Mozilla的Gecko、google的WebKit、Opera内核Presto；
 
@@ -284,6 +321,7 @@ console.log(arr);
     超链接访问过后hover样式就不出现了 被点击访问过的超链接样式不在具有hover和active了解决方法是改变CSS属性的排列顺序:
     L-V-H-A :  a:link {} a:visited {} a:hover {} a:active {}
 ### 51. CSS的权重优先级如何计算？
+<img src="img\css_weight.jpg"/>
 ### 52. 如何居中div,如何居中一个浮动元素？如何让绝对定位的DIV居中？
     1. 给div设置一个宽度，然后添加margin:0 auto属性
 
@@ -331,8 +369,27 @@ console.log(arr);
 
     this一般情况下：是全局对象Global。 作为方法调用，那么this就是指这个对象
 ### 55. .call .apply 的作用和区别。
+    foo.call(this, arg1,arg2,arg3) == foo.apply(this, arguments)==this.foo(arg1, arg2, arg3)
+
+    Math.max.apply(this,[1,2,3,4]) == Math.max.call(this,1,2,3,4)
+
+    call, apply作用就是借用别人的方法来调用,就像调用自己的一样.
+
+    相同点:两个方法产生的作用是完全一样的
+
+    不同点:方法传递的参数不同
 ### 56. jQuery的属性拷贝（extend）的实现原理是什么，如何实现深拷贝
+<img src="img\extend.png" />
+<img src="img\deep_extend.png" />
+
+    深拷贝：
+    JQuery.extend（boolean，目标对象，源对象）
 ### 57. 需求：实现一个页面操作不会整页刷新的网站，并且能在浏览器前进、后退时正确给出你的技术实现方案？
+    1. 利用 location.hash 来实现
+        hash 属性是Javascript原生的属性，是一个可读写的字符串，该字符串是 URL 的锚部分（从 # 号开始的部分）。比如 location.href = "http://blog.chenxu.me/post/#1"，那么  location.hash = "#1"。通过设置 hash 可以操作浏览器的历史记录（即前进、后退）。
+    2. 利用 history.pushState API
+        pushState 是 Html5 中引入的新特性，用来修改浏览器的历史记录。通过 pushState 把记录保存到浏览器的历史数据中，然后通过windows.onpopstate事件来响应浏览器的前进、后退操作。下文将详细介绍如何使用该API来实现浏览器的前进与后退。
+###### [pushState + ajax 实现浏览器无刷新前进后退](http://blog.chenxu.me/post/detail?id=ed4f0732-897f-48e4-9d4f-821e82f17fad)
 ### 58. 如何实现下拉刷新
 ````
 <!DOCTYPE html>
@@ -545,3 +602,4 @@ console.log(arr);
 ### 59. Vue混合式通信
 ### 60. svn 和 git的区别
 ### 61. chunkhash是什么？js加版本号是问号后加时间戳好，还是该文件名加chunkhash好？
+### 62. Vue有哪些坑？
