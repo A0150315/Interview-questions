@@ -271,6 +271,7 @@ console.log(arr);
     3. <script defer src="myscript.js"></script>
     有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。
 <img src="img\defer async.jpg">
+
 ### 48. 介绍一下CSS的盒子模型，低版本IE的盒子模型有什么不同
     1. 两种，IE 盒子模型、标准 W3C 盒子模型；IE 的content部分包含了 border 和 padding;
 
