@@ -21,4 +21,4 @@ console.log(object1.durian);  //100
 
 $.extend( object1 );
 
-console.log( $.apple ); //0
+console.log( $.apple ); //01
